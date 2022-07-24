@@ -2,7 +2,7 @@
  * @Author: JasonLaw
  * @Date: 2022-07-18 20:13:12
  * @LastEditors: JasonLaw
- * @LastEditTime: 2022-07-20 19:19:43
+ * @LastEditTime: 2022-07-24 17:32:49
  * @FilePath: /Skiplist_cs/Skiplist_client/src/Node.h
  * @Description:
  */
@@ -26,7 +26,7 @@ class Node {
   V getValue() const;
   void setValue(V v);
 
-  //使用forward，这个指针数组，储存当前节点的下一层节点。
+  // 使用forward，这个指针数组，储存当前节点的下一层节点。
   // 1 -> 2 -> 3 -> 4
   Node<K, V> **forward;
   int node_level;
@@ -41,8 +41,9 @@ Node<K, V>::Node(const K k, const V v, int level) {
   this->key = k;
   this->value = v;
   this->node_level = level;
-  //此处使用new
-  //分配内存后，需要对内存空间进行初始化，可以采用直接在new最后加上()来初始化，也可以使用memset。
+
+  // 此处使用new分配内存后，需要对内存空间进行初始化
+  // 可以采用直接在new最后加上()来初始化，也可以使用memset。
   // new ()
   this->forward = new Node<K, V> *[level + 1]();
   // memset

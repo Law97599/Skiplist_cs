@@ -2,7 +2,7 @@
  * @Author: JasonLaw
  * @Date: 2022-07-18 20:13:12
  * @LastEditors: JasonLaw
- * @LastEditTime: 2022-07-21 17:19:25
+ * @LastEditTime: 2022-07-24 17:41:12
  * @FilePath: /Skiplist_cs/Skiplist_server/src/Server.cpp
  * @Description:
  */
@@ -85,13 +85,7 @@ void initDB() { cout << "Redis by Stack start-up..." << endl; }
 // 初始化命令库
 void initCommand(Server *&server) {
   (server->Commands).insert(pair<string, CommandFun>("set", &setCommand));
-
   (server->Commands).insert(pair<string, CommandFun>("get", &getCommand));
-  /*	Client*c1=new Client();
-      mymap::iterator it;
-      it=server->Commands.find("get");
-      CommandFun cmd=it->second;
-      cmd(server,c1);*/
   (server->Commands).insert(pair<string, CommandFun>("del", &delCommand));
   (server->Commands).insert(pair<string, CommandFun>("load", &loadCommand));
   (server->Commands).insert(pair<string, CommandFun>("dump", &dumpCommand));
@@ -138,7 +132,6 @@ void *WorkerThread(void *param) {
     // 类型转换，方便比较
     string message(szMessage);
     // 对用户发送的消息进行判断
-    // cout<<"else hh"<<endl;
     // 对发送的消息进行分割，查看是否符合get/set命令的格式
     // 分隔符
     Command C(message);
@@ -163,23 +156,16 @@ void *WorkerThread(void *param) {
       //执行get命令
     }
     if (C._arg[0] == "get") {
-      //符合命令格式
-
-      // cout << "ok" << endl;
-      //获得键值
+      // 符合命令格式
+      // 获得键值
       string key = C._arg[1];
       string value = "";
       bool flag = true;
-      // cout << C._arg[0] << " " << C._arg[1] << endl;
 
       mymap::iterator it;
       it = server->Commands.find("get");
       CommandFun cmd = it->second;
-      //向客户端发送数据
-      // char *str;
-      // int len=value.length();
-      // str=(char*)malloc((len+1)*sizeof(char));
-      // value.copy(str,len,0);
+      // 向客户端发送数据
       cmd(server, c, key, value, flag);
       if (flag) {
         char *str = new char[strlen(value.c_str())];
@@ -193,21 +179,15 @@ void *WorkerThread(void *param) {
       continue;
     }
     if (C._arg[0] == "del") {
-      //符合命令格式
-      // cout << "ok" << endl;
-      //获得键值
+      // 符合命令格式
+      // 获得键值
       string key = C._arg[1];
       string value = "";
       bool flag = true;
-      // cout << C._arg[0] << " " << C._arg[1] << endl;
       mymap::iterator it;
       it = server->Commands.find("del");
       CommandFun cmd = it->second;
-      //向客户端发送数据
-      // char *str;
-      // int len=value.length();
-      // str=(char*)malloc((len+1)*sizeof(char));
-      // value.copy(str,len,0);
+      // 向客户端发送数据
       cmd(server, c, key, value, flag);
       if (flag) {
         string sendMessage = "(integer) 1";
@@ -223,21 +203,16 @@ void *WorkerThread(void *param) {
       continue;
     }
     if (C._arg[0] == "load") {
-      //符合命令格式
-      //获得键值
+      // 符合命令格式
+      // 获得键值
       string key = "";
       string value = "";
       bool flag = true;
-      // cout << C._arg[0] << " " << C._arg[1] << endl;
       mymap::iterator it;
       it = server->Commands.find("load");
       CommandFun cmd = it->second;
       cmd(server, c, key, value, flag);
-      //向客户端发送数据
-      // char *str;
-      // int len=value.length();
-      // str=(char*)malloc((len+1)*sizeof(char));
-      // value.copy(str,len,0);
+      // 向客户端发送数据
       string sendMessage = "(integer) 1";
       char *str = new char[strlen(sendMessage.c_str())];
       strcpy(str, sendMessage.c_str());
@@ -245,21 +220,16 @@ void *WorkerThread(void *param) {
       continue;
     }
     if (C._arg[0] == "dump") {
-      //符合命令格式
-      //获得键值
+      // 符合命令格式
+      // 获得键值
       string key = "";
       string value = "";
       bool flag = true;
-      // cout << C._arg[0] << " " << C._arg[1] << endl;
       mymap::iterator it;
       it = server->Commands.find("dump");
       CommandFun cmd = it->second;
       cmd(server, c, key, value, flag);
-      //向客户端发送数据
-      // char *str;
-      // int len=value.length();
-      // str=(char*)malloc((len+1)*sizeof(char));
-      // value.copy(str,len,0);
+      // 向客户端发送数据
       string sendMessage = "(integer) 1";
       char *str = new char[strlen(sendMessage.c_str())];
       strcpy(str, sendMessage.c_str());

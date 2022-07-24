@@ -2,7 +2,7 @@
  * @Author: JasonLaw
  * @Date: 2022-07-18 20:13:12
  * @LastEditors: JasonLaw
- * @LastEditTime: 2022-07-20 19:19:52
+ * @LastEditTime: 2022-07-24 17:33:35
  * @FilePath: /Skiplist_cs/Skiplist_server/src/Node.h
  * @Description:
  */
@@ -41,8 +41,8 @@ Node<K, V>::Node(const K k, const V v, int level) {
   this->key = k;
   this->value = v;
   this->node_level = level;
-  //此处使用new
-  //分配内存后，需要对内存空间进行初始化，可以采用直接在new最后加上()来初始化，也可以使用memset。
+  // 此处使用new分配内存后，需要对内存空间进行初始化
+  // 可以采用直接在new最后加上()来初始化，也可以使用memset。
   // new ()
   this->forward = new Node<K, V> *[level + 1]();
   // memset
