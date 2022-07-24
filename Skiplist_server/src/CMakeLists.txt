@@ -1,0 +1,6 @@
+PROJECT (SERVER)
+
+SET(SRC_LIST Server.cpp)
+
+ADD_EXECUTABLE(server ${SRC_LIST})
+TARGET_LINK_LIBRARIES(server pthread)

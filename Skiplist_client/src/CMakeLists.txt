@@ -1,0 +1,7 @@
+PROJECT (CLIENT)
+
+SET(SRC_LIST Client.cpp)
+
+ADD_EXECUTABLE(client ${SRC_LIST})
+
+TARGET_LINK_LIBRARIES(client pthread)
