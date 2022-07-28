@@ -2,7 +2,7 @@
  * @Author: JasonLaw
  * @Date: 2022-07-18 20:13:12
  * @LastEditors: JasonLaw
- * @LastEditTime: 2022-07-20 19:19:51
+ * @LastEditTime: 2022-07-28 15:41:56
  * @FilePath: /Skiplist_cs/Skiplist_server/src/Command.h
  * @Description:
  */
@@ -13,8 +13,8 @@
 #include <vector>
 using namespace std;
 
-const string _all_order[5] = {"set", "get", "del", "load", "dump"};
-const int _order_number = 5;
+const string _all_order[6] = {"set", "get", "del", "load", "dump", "quit"};
+const int _order_number = 6;
 string delimiter2 = " ";
 
 class Command {

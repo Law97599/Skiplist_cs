@@ -2,7 +2,7 @@
  * @Author: JasonLaw
  * @Date: 2022-07-20 18:05:21
  * @LastEditors: JasonLaw
- * @LastEditTime: 2022-07-26 16:41:08
+ * @LastEditTime: 2022-07-28 15:48:44
  * @FilePath: /Skiplist_cs/Skiplist_client/src/Client.cpp
  * @Description:
  */
@@ -82,8 +82,12 @@ int main() {
       break;
     }
 
-    //输出收到的数据
+    // 输出收到的数据
     cout << "Server reply: " << szBuffer << endl;
+
+    if (C.is_quit_command()) {
+      break;
+    }
   }
 
   // 释放连接和进行结束工作

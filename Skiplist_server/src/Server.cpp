@@ -2,7 +2,7 @@
  * @Author: JasonLaw
  * @Date: 2022-07-18 20:13:12
  * @LastEditors: JasonLaw
- * @LastEditTime: 2022-07-24 17:41:12
+ * @LastEditTime: 2022-07-28 15:53:04
  * @FilePath: /Skiplist_cs/Skiplist_server/src/Server.cpp
  * @Description:
  */
@@ -147,13 +147,11 @@ void *WorkerThread(void *param) {
 
       CommandFun cmd = it->second;
       cmd(server, c, key, value, flag);
-      //向客户端发送数据
+      // 向客户端发送数据
       char _char_array[] = "OK";
       char *str = _char_array;
       send(c->sClient, str, strlen(str) + sizeof(char), 0);
       continue;
-
-      //执行get命令
     }
     if (C._arg[0] == "get") {
       // 符合命令格式
@@ -236,7 +234,17 @@ void *WorkerThread(void *param) {
       send(c->sClient, str, strlen(str) + sizeof(char), 0);
       continue;
     }
+    if (C._arg[0] == "quit") {
+      // 向客户端发送数据
+      string sendMessage = "Bye!";
+      char *str = new char[strlen(sendMessage.c_str())];
+      strcpy(str, sendMessage.c_str());
+      send(c->sClient, str, strlen(str) + sizeof(char), 0);
+      break;
+    }
   }
+  cout << "Client: " << inet_ntoa((c->my_client).sin_addr) << " : "
+       << ntohs((c->my_client).sin_port) << " disconnected!" << endl;
   return (void *)0;
 }
 
@@ -256,10 +264,8 @@ int main() {
     client->sClient = accept(
         server->sListen, (struct sockaddr *)&(client->my_client), &iaddrSize);
 
-    /*printf("Accepted client:%s:%d\n", inet_ntoa((client->my_client).sin_addr),
-        ntohs((client->my_client).sin_port)); */
-    cout << "Accepted client:" << inet_ntoa((client->my_client).sin_addr)
-         << " : " << ntohs((client->my_client).sin_port) << endl;
+    cout << "Client: " << inet_ntoa((c->my_client).sin_addr) << " : "
+         << ntohs((c->my_client).sin_port) << " connected!" << endl;
 
     //将客户端与服务端中对应的数据库连接,后续可能会针对此接口进行管理。
     server->DB[i] = &(client->db);

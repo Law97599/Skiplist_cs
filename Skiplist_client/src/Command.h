@@ -2,7 +2,7 @@
  * @Author: JasonLaw
  * @Date: 2022-07-18 20:13:12
  * @LastEditors: JasonLaw
- * @LastEditTime: 2022-07-20 19:28:41
+ * @LastEditTime: 2022-07-28 15:47:45
  * @FilePath: /Skiplist_cs/Skiplist_client/src/Command.h
  * @Description:
  */
@@ -13,8 +13,8 @@
 #include <vector>
 using namespace std;
 
-const string _all_order[5] = {"set", "get", "del", "load", "dump"};
-const int _order_number = 5;
+const string _all_order[6] = {"set", "get", "del", "load", "dump", "quit"};
+const int _order_number = 6;
 string delimiter2 = " ";
 
 class Command {
@@ -22,6 +22,7 @@ class Command {
   string get_command();
   Command(string s) : _command(s){};
   bool is_valid_command();
+  bool is_quit_command();
   void split_command();
   void print_error(int);
   vector<string> _arg;
@@ -95,6 +96,14 @@ bool Command::is_valid_command() {
   }
 
   return true;
+}
+
+bool Command::is_quit_command() {
+  string _order = _arg[0];
+  if (_order == "quit") {
+    return true;
+  }
+  return false;
 }
 
 void Command::print_error(int error_number) {
