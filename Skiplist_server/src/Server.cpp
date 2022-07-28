@@ -2,12 +2,12 @@
  * @Author: JasonLaw
  * @Date: 2022-07-18 20:13:12
  * @LastEditors: JasonLaw
- * @LastEditTime: 2022-07-28 15:59:45
+ * @LastEditTime: 2022-07-28 16:00:57
  * @FilePath: /Skiplist_cs/Skiplist_server/src/Server.cpp
  * @Description:
  */
 #pragma warning(disable : 4786)
-//服务端
+// 服务端
 
 #include "Server.h"
 
@@ -102,7 +102,7 @@ void initServer(Server *&server) {
   // 初始化命令库
   initCommand(server);
 
-  //绑定
+  // 绑定
   (server->local).sin_family = AF_INET;
   (server->local).sin_port = htons(PORT);
   (server->local).sin_addr.s_addr = htonl(INADDR_ANY);
@@ -252,14 +252,14 @@ int main() {
   socklen_t iaddrSize = sizeof(sockaddr_in);
   Client *client;
 
-  //初始化服务端
+  // 初始化服务端
   initServer(server);
 
-  //获得线程的句柄
+  // 获得线程的句柄
   pthread_t hThread[MAXCLIENTNUM];
 
   for (int i = 0; i < MAXCLIENTNUM; i++) {
-    //等待客户端连接
+    // 等待客户端连接
     Client *client = new Client();
     client->sClient = accept(
         server->sListen, (struct sockaddr *)&(client->my_client), &iaddrSize);
@@ -267,11 +267,10 @@ int main() {
     cout << "Client: " << inet_ntoa((client->my_client).sin_addr) << " : "
          << ntohs((client->my_client).sin_port) << " connected!" << endl;
 
-    //将客户端与服务端中对应的数据库连接,后续可能会针对此接口进行管理。
+    // 将客户端与服务端中对应的数据库连接,后续可能会针对此接口进行管理。
     server->DB[i] = &(client->db);
 
-    //创建工作线程
-    // hThread[i] = CreateThread(NULL, 0, WorkerThread, client, 0, NULL);
+    // 创建工作线程
     pthread_create(&hThread[i], NULL, &WorkerThread, (void *)client);
   }
 
@@ -279,7 +278,7 @@ int main() {
   for (int i = 0; i < MAXCLIENTNUM; i++) {
     pthread_join(hThread[i], NULL);
   }
-  //关闭套接字
+  // 关闭套接字
   close(server->sListen);
   // delete[]server->DB;
   cout << "ALL FINISHED" << endl;
