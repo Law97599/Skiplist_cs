@@ -2,7 +2,7 @@
  * @Author: JasonLaw
  * @Date: 2022-07-18 20:13:12
  * @LastEditors: JasonLaw
- * @LastEditTime: 2022-07-28 15:53:04
+ * @LastEditTime: 2022-07-28 15:59:45
  * @FilePath: /Skiplist_cs/Skiplist_server/src/Server.cpp
  * @Description:
  */
@@ -264,8 +264,8 @@ int main() {
     client->sClient = accept(
         server->sListen, (struct sockaddr *)&(client->my_client), &iaddrSize);
 
-    cout << "Client: " << inet_ntoa((c->my_client).sin_addr) << " : "
-         << ntohs((c->my_client).sin_port) << " connected!" << endl;
+    cout << "Client: " << inet_ntoa((client->my_client).sin_addr) << " : "
+         << ntohs((client->my_client).sin_port) << " connected!" << endl;
 
     //将客户端与服务端中对应的数据库连接,后续可能会针对此接口进行管理。
     server->DB[i] = &(client->db);
