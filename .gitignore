@@ -1,0 +1,17 @@
+*
+!*.*
+!*/
+!*.cpp
+!*.h
+!makefile
+!Makefile
+
+*.o
+*.1
+*.log
+*.exe
+/.vscode
+/Skiplist_client/bin/
+/Skiplist_server/bin/
+.clang-format
+format_count.sh
