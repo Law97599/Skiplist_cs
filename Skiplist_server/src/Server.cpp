@@ -1,10 +1,12 @@
-/*
- * @Author: JasonLaw
- * @Date: 2022-07-18 20:13:12
- * @LastEditors: JasonLaw
- * @LastEditTime: 2022-07-28 16:00:57
- * @FilePath: /Skiplist_cs/Skiplist_server/src/Server.cpp
- * @Description:
+/**
+ * @file Server.cpp
+ * @author JasonLaw (luozuxuan@foxmail.com)
+ * @brief
+ * @version 0.1
+ * @date 2022-10-08
+ *
+ * @copyright Copyright (c) 2022
+ *
  */
 #pragma warning(disable : 4786)
 // 服务端
@@ -80,9 +82,7 @@ void dumpCommand(Server* server, Client* client, string key, string& value,
 }
 
 // 初始化数据库
-void initDB() {
-  cout << "Redis by Stack start-up..." << endl;
-}
+void initDB() { cout << "Redis by Stack start-up..." << endl; }
 
 // 初始化命令库
 void initCommand(Server*& server) {
@@ -126,8 +126,7 @@ void* WorkerThread(void* param) {
     // szMessage是发送消息的内容
 
     ret = recv(c->sClient, szMessage, MSGSIZE, 0);
-    if (ret <= 0)
-      return (void*)0;
+    if (ret <= 0) return (void*)0;
     szMessage[ret] = '\0';
 
     // printf("Received [%d bytes]: '%s'\n", ret, szMessage);
@@ -277,7 +276,6 @@ int main() {
     pthread_create(&hThread[i], NULL, &WorkerThread, (void*)client);
   }
 
-  // WaitForMultipleObjects(2, hThread, TRUE, INFINITE);
   for (int i = 0; i < MAXCLIENTNUM; i++) {
     pthread_join(hThread[i], NULL);
   }

@@ -1,10 +1,12 @@
-/*
- * @Author: JasonLaw
- * @Date: 2022-07-20 18:05:21
- * @LastEditors: JasonLaw
- * @LastEditTime: 2022-07-28 15:48:44
- * @FilePath: /Skiplist_cs/Skiplist_client/src/Client.cpp
- * @Description:
+/**
+ * @file Client.cpp
+ * @author JasonLaw (luozuxuan@foxmail.com)
+ * @brief
+ * @version 0.1
+ * @date 2022-10-08
+ *
+ * @copyright Copyright (c) 2022
+ *
  */
 #include <arpa/inet.h>
 #include <math.h>
@@ -21,20 +23,20 @@ using namespace std;
 
 #pragma warning(disable : 4996)
 
-//定义程序中使用的常量
-#define SERVER_ADDRESS "127.0.0.1"  //服务器端IP地址
-#define PORT 5150                   //服务器的端口号
-#define MSGSIZE 1024                //收发缓冲区的大小
+// 定义程序中使用的常量
+#define SERVER_ADDRESS "127.0.0.1"  // 服务器端IP地址
+#define PORT 5150                   // 服务器的端口号
+#define MSGSIZE 1024                // 收发缓冲区的大小
 #define MAXBYTE 0xff
 
 int main() {
-  //连接所用套节字
+  // 连接所用套节字
   int sClient;
-  //保存远程服务器的地址信息
+  // 保存远程服务器的地址信息
   sockaddr_in server;
-  //收发缓冲区
+  // 收发缓冲区
   char szMessage[MSGSIZE];
-  //成功接收字节的个数
+  // 成功接收字节的个数
   int ret;
 
   // 创建客户端套节字

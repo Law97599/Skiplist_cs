@@ -1,10 +1,12 @@
-/*
- * @Author: JasonLaw
- * @Date: 2022-07-18 20:13:12
- * @LastEditors: JasonLaw
- * @LastEditTime: 2022-07-24 17:33:35
- * @FilePath: /Skiplist_cs/Skiplist_server/src/Node.h
- * @Description:
+/**
+ * @file Node.h
+ * @author JasonLaw (luozuxuan@foxmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-10-08
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
 #ifndef MINIREDIS_NODE_H
 #define MINIREDIS_NODE_H

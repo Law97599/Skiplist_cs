@@ -1,10 +1,12 @@
-/*
- * @Author: JasonLaw
- * @Date: 2022-07-18 20:13:12
- * @LastEditors: JasonLaw
- * @LastEditTime: 2022-07-28 15:47:45
- * @FilePath: /Skiplist_cs/Skiplist_client/src/Command.h
- * @Description:
+/**
+ * @file Command.h
+ * @author JasonLaw (luozuxuan@foxmail.com)
+ * @brief
+ * @version 0.1
+ * @date 2022-10-08
+ *
+ * @copyright Copyright (c) 2022
+ *
  */
 #ifndef MINIREDIS_COMMAND_H
 #define MINIREDIS_COMMAND_H
@@ -31,9 +33,7 @@ class Command {
   string _command;
 };
 
-string Command::get_command() {
-  return _command;
-}
+string Command::get_command() { return _command; }
 
 void Command::split_command() {
   if (_command == "") {

@@ -1,10 +1,12 @@
-/*
- * @Author: JasonLaw
- * @Date: 2022-07-20 14:57:45
- * @LastEditors: JasonLaw
- * @LastEditTime: 2022-07-24 17:42:04
- * @FilePath: /Skiplist_cs/Skiplist_server/src/Server.h
- * @Description:
+/**
+ * @file Server.h
+ * @author JasonLaw (luozuxuan@foxmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-10-08
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
 #ifndef MINIREDIS_SERVER_H
 
